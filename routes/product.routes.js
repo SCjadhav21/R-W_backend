@@ -14,8 +14,14 @@ ProductRoute.get("/", async (req, res) => {
 });
 
 ProductRoute.post("/", Authentication, async (req, res) => {
-  let { product_name, product_image, colors_avl, product_price, product_desc } =
-    req.body;
+  let {
+    product_name,
+    product_image,
+    colors_avl,
+    product_price,
+    product_desc,
+    userId,
+  } = req.body;
 
   try {
     let product = new ProductModel({
@@ -23,6 +29,7 @@ ProductRoute.post("/", Authentication, async (req, res) => {
       product_image,
       colors_avl,
       product_price,
+      userId,
       product_desc,
     });
     await product.save();

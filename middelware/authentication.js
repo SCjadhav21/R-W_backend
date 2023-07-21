@@ -8,6 +8,7 @@ const Authentication = (req, res, next) => {
     if (err) {
       res.status(500).send(err);
     } else {
+      req.body.userId = result.userId;
       next();
     }
   });
