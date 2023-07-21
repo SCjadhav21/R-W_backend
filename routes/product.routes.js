@@ -12,6 +12,15 @@ ProductRoute.get("/", async (req, res) => {
     res.status(500).send(e.message);
   }
 });
+ProductRoute.get("/myproduct", Authentication, async (req, res) => {
+  let userId = req.body.userId;
+  try {
+    const products = await ProductModel.find({ userId: userId });
+    res.status(200).send(products);
+  } catch (e) {
+    res.status(500).send(e.message);
+  }
+});
 
 ProductRoute.post("/", Authentication, async (req, res) => {
   let {
